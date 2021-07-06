@@ -1,30 +1,32 @@
 package com.app.service.orderservice;
 
 import com.app.entity.Order;
+import com.app.repository.IOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class OrderService implements IOrderService {
     @Autowired
-    IOrderService orderService;
+    IOrderRepository orderRepository;
     @Override
     public Iterable<Order> findAll() {
-        return orderService.findAll();
+        return orderRepository.findAll();
     }
 
     @Override
     public Optional<Order> findById(Long id) {
-        return orderService.findById(id);
+        return orderRepository.findById(id);
     }
 
     @Override
     public void save(Order order) {
-        orderService.save(order);
+        orderRepository.save(order);
     }
 
     @Override
     public void remove(Long id) {
-        orderService.remove(id);
+        orderRepository.deleteById(id);
     }
 }

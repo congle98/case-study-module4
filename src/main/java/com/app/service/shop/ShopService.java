@@ -2,30 +2,31 @@ package com.app.service.shop;
 
 import com.app.entity.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
-public class ShopService implements IShopService{
+@Service
+public class ShopService implements IShopRepository {
     @Autowired
-    IShopService shopService;
+    IShopRepository shopRepository;
 
     @Override
     public Iterable<Shop> findAll() {
-        return shopService.findAll();
+        return shopRepository.findAll();
     }
 
     @Override
     public Optional<Shop> findById(Long id) {
-        return shopService.findById(id);
+        return shopRepository.findById(id);
     }
 
     @Override
     public void save(Shop shop) {
-        shopService.save(shop);
+        shopRepository.save(shop);
     }
 
     @Override
     public void remove(Long id) {
-        shopService.remove(id);
+        shopRepository.remove(id);
     }
 }

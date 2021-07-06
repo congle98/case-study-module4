@@ -1,31 +1,33 @@
 package com.app.service.rate;
 
 import com.app.entity.Rate;
+import com.app.repository.IRateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class RateService implements IRateService{
     @Autowired
-    IRateService rateService;
+    IRateRepository rateRepository;
 
     @Override
     public Iterable<Rate> findAll() {
-        return rateService.findAll();
+        return rateRepository.findAll();
     }
 
     @Override
     public Optional<Rate> findById(Long id) {
-        return rateService.findById(id);
+        return rateRepository.findById(id);
     }
 
     @Override
     public void save(Rate rate) {
-        rateService.save(rate);
+        rateRepository.save(rate);
     }
 
     @Override
     public void remove(Long id) {
-        rateService.remove(id);
+        rateRepository.deleteById(id);
     }
 }

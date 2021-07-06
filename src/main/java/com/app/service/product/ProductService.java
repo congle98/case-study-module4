@@ -1,30 +1,32 @@
 package com.app.service.product;
 
 import com.app.entity.Product;
+import com.app.repository.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class ProductService implements IProductService{
     @Autowired
-    IProductService productService;
+    IProductRepository productRepository;
     @Override
     public Iterable<Product> findAll() {
-        return productService.findAll();
+        return productRepository.findAll();
     }
 
     @Override
     public Optional<Product> findById(Long id) {
-        return productService.findById(id);
+        return productRepository.findById(id);
     }
 
     @Override
     public void save(Product product) {
-        productService.save(product);
+        productRepository.save(product);
     }
 
     @Override
     public void remove(Long id) {
-        productService.remove(id);
+        productRepository.deleteById(id);
     }
 }
